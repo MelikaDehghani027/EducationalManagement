@@ -1,0 +1,147 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.home.title">People</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-person" [routerLink]="['/person/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.home.createLabel">
+            Create new Person
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'cardHolderGatewayApp.educationalManagementPerson.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="people">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="firstName"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.firstName">First Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastName"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.lastName">Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="fatherName"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.fatherName">Father Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nationalCode"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.nationalCode">National Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="marjaaCode"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.marjaaCode">Marjaa Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="birthCertificateSerial"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateSerial">Birth Certificate Serial</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imageId"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.imageId">Image Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="birthDate"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthDate">Birth Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="gender"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.gender">Gender</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="birthCertificateLetterSeries"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateLetterSeries">Birth Certificate Letter Series</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="birthCertificateTwoDigitSeries"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateTwoDigitSeries">Birth Certificate Two Digit Series</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="birthCertificateCode"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateCode">Birth Certificate Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="birthPlace"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthPlace">Birth Place</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.email">Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="postalAddress"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.postalAddress">Postal Address</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="postalCode"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.postalCode">Postal Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="username"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.username">Username</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="active"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.active">Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="personalDataCompletelyFilled"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.personalDataCompletelyFilled">Personal Data Completely Filled</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="numberOfStudentMemberships"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.numberOfStudentMemberships">Number Of Student Memberships</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="numberOfTeacherMemberships"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.numberOfTeacherMemberships">Number Of Teacher Memberships</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="numberOfEmployeeMemberships"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.numberOfEmployeeMemberships">Number Of Employee Memberships</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="firstNameEn"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.firstNameEn">First Name En</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastNameEn"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.lastNameEn">Last Name En</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="mobileNumber"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.mobileNumber">Mobile Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phoneNumber"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.phoneNumber">Phone Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="birthCertificateIssuePlace"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateIssuePlace">Birth Certificate Issue Place</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="maritalStatus"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.maritalStatus">Marital Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nationality"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.nationality">Nationality</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="religion"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.religion">Religion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="religiousDenomination"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.religiousDenomination">Religious Denomination</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="bloodType"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.bloodType">Blood Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="completelyRegistered"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.completelyRegistered">Completely Registered</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cardStatus"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.cardStatus">Card Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="bankName"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.bankName">Bank Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="branchCode"><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.branchCode">Branch Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let person of people ;trackBy: trackId">
+                <td><a [routerLink]="['/person', person.id, 'view' ]">{{person.id}}</a></td>
+                <td>{{person.firstName}}</td>
+                <td>{{person.lastName}}</td>
+                <td>{{person.fatherName}}</td>
+                <td>{{person.nationalCode}}</td>
+                <td>{{person.marjaaCode}}</td>
+                <td>{{person.birthCertificateSerial}}</td>
+                <td>{{person.imageId}}</td>
+                <td>{{person.birthDate | date:'mediumDate'}}</td>
+                <td jhiTranslate="{{'cardHolderGatewayApp.PersonGenderEnum.' + person.gender}}">{{person.gender}}</td>
+                <td>{{person.birthCertificateLetterSeries}}</td>
+                <td>{{person.birthCertificateTwoDigitSeries}}</td>
+                <td>{{person.birthCertificateCode}}</td>
+                <td>{{person.birthPlace}}</td>
+                <td>{{person.email}}</td>
+                <td>{{person.postalAddress}}</td>
+                <td>{{person.postalCode}}</td>
+                <td>{{person.username}}</td>
+                <td>{{person.active}}</td>
+                <td>{{person.personalDataCompletelyFilled}}</td>
+                <td>{{person.numberOfStudentMemberships}}</td>
+                <td>{{person.numberOfTeacherMemberships}}</td>
+                <td>{{person.numberOfEmployeeMemberships}}</td>
+                <td>{{person.firstNameEn}}</td>
+                <td>{{person.lastNameEn}}</td>
+                <td>{{person.mobileNumber}}</td>
+                <td>{{person.phoneNumber}}</td>
+                <td>{{person.birthCertificateIssuePlace}}</td>
+                <td jhiTranslate="{{'cardHolderGatewayApp.MaritalStatusEnum.' + person.maritalStatus}}">{{person.maritalStatus}}</td>
+                <td>{{person.nationality}}</td>
+                <td>{{person.religion}}</td>
+                <td>{{person.religiousDenomination}}</td>
+                <td jhiTranslate="{{'cardHolderGatewayApp.BloodTypeEnum.' + person.bloodType}}">{{person.bloodType}}</td>
+                <td>{{person.completelyRegistered}}</td>
+                <td jhiTranslate="{{'cardHolderGatewayApp.CardStatusEnum.' + person.cardStatus}}">{{person.cardStatus}}</td>
+                <td>{{person.bankName}}</td>
+                <td>{{person.branchCode}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/person', person.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/person', person.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="people && people.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

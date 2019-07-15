@@ -1,0 +1,124 @@
+.dialog-card {
+    position: absolute;
+    top: 6em;
+    width: 24rem;
+    height: 27rem;
+    background-color: white;
+    // border-radius: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    padding-right: 2em;
+    top: -20em;
+}
+.icon-title {
+    background-image: url(../../../../../content/images/1.PNG);
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding-top: 6em;
+    padding-left: 2em;
+    height: 10em;
+    margin-bottom: 1em;
+    font-size: 13px;
+}
+.header-card {
+    position: relative;
+    width: 24rem;
+    height: 11.5rem;
+
+    font-size: 1.125rem;
+
+    text-align: center;
+    // background-color: aqua;
+    // margin-bottom: 1em;
+    padding-top: 1em;
+    padding-right: 1.6em;
+}
+.title-style {
+    font-size: 18px;
+    letter-spacing: -0.2px;
+    word-spacing: 0.2px;
+    color: #012875;
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+
+    text-align: center;
+    margin-left: 2em;
+}
+
+.body-card {
+    position: relative;
+    height: 5.625rem;
+    width: 24rem;
+
+    text-align: right;
+    font-size: 14px;
+
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+
+    // margin-left: 1em;
+    margin-top: 0.5rem;
+}
+.footer-card {
+    position: relative;
+    // margin-top: 1em;
+    width: 24rem;
+    height: 1.6781;
+    text-align: center;
+    // overflow: auto;
+    padding-bottom: 2.5em;
+    padding-left: 2em;
+
+    margin-right: 1em;
+}
+
+.style-btn-close {
+    border-radius: 45px;
+    background-color: #c6cadf;
+    border: 1px solid #687aa6;
+    color: #07294d;
+    text-align: center;
+
+    width: 8.3125rem;
+    height: 2.1875rem;
+}
+.style-btn-agree {
+    border-radius: 45px;
+    background-color: #07294d;
+    border: 1px solid #07294d;
+    color: white;
+    text-align: center;
+
+    width: 8.3125rem;
+    height: 2.1875rem;
+
+    margin-left: 2.5rem;
+    margin-right: 2.5625rem;
+    cursor: pointer;
+}
+
+.btn-disabled {
+    cursor: not-allowed;
+    background-color: #c5c5c5 !important;
+    color: #07294d !important;
+}
+
+.back-btn {
+    border-radius: 45px;
+    background-color: #c6cadf;
+    border: 1px solid #687aa6;
+    color: #07294d;
+    text-align: center;
+
+    margin-right: 2em;
+    margin-top: 4em;
+    width: 13rem;
+    height: 2.1875rem;
+}

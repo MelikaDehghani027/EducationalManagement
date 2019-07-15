@@ -1,0 +1,234 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-person-heading" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.home.createOrEditLabel">Create or edit a Person</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!person.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="person.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.firstName" for="field_firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="field_firstName"
+                        [(ngModel)]="person.firstName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.lastName" for="field_lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="field_lastName"
+                        [(ngModel)]="person.lastName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.fatherName" for="field_fatherName">Father Name</label>
+                    <input type="text" class="form-control" name="fatherName" id="field_fatherName"
+                        [(ngModel)]="person.fatherName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.nationalCode" for="field_nationalCode">National Code</label>
+                    <input type="text" class="form-control" name="nationalCode" id="field_nationalCode"
+                        [(ngModel)]="person.nationalCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.marjaaCode" for="field_marjaaCode">Marjaa Code</label>
+                    <input type="text" class="form-control" name="marjaaCode" id="field_marjaaCode"
+                        [(ngModel)]="person.marjaaCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateSerial" for="field_birthCertificateSerial">Birth Certificate Serial</label>
+                    <input type="text" class="form-control" name="birthCertificateSerial" id="field_birthCertificateSerial"
+                        [(ngModel)]="person.birthCertificateSerial" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.imageId" for="field_imageId">Image Id</label>
+                    <input type="text" class="form-control" name="imageId" id="field_imageId"
+                        [(ngModel)]="person.imageId" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthDate" for="field_birthDate">Birth Date</label>
+                    <div class="input-group">
+                        <input id="field_birthDate" type="text" class="form-control" name="birthDate" ngbDatepicker  #birthDateDp="ngbDatepicker" [(ngModel)]="person.birthDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.gender" for="field_gender">Gender</label>
+                    <select class="form-control" name="gender" [(ngModel)]="person.gender" id="field_gender" >
+                        <option value="MALE">{{'cardHolderGatewayApp.PersonGenderEnum.MALE' | translate}}</option>
+                        <option value="FEMALE">{{'cardHolderGatewayApp.PersonGenderEnum.FEMALE' | translate}}</option>
+                        <option value="UNKNOWN">{{'cardHolderGatewayApp.PersonGenderEnum.UNKNOWN' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateLetterSeries" for="field_birthCertificateLetterSeries">Birth Certificate Letter Series</label>
+                    <input type="text" class="form-control" name="birthCertificateLetterSeries" id="field_birthCertificateLetterSeries"
+                        [(ngModel)]="person.birthCertificateLetterSeries" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateTwoDigitSeries" for="field_birthCertificateTwoDigitSeries">Birth Certificate Two Digit Series</label>
+                    <input type="text" class="form-control" name="birthCertificateTwoDigitSeries" id="field_birthCertificateTwoDigitSeries"
+                        [(ngModel)]="person.birthCertificateTwoDigitSeries" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateCode" for="field_birthCertificateCode">Birth Certificate Code</label>
+                    <input type="text" class="form-control" name="birthCertificateCode" id="field_birthCertificateCode"
+                        [(ngModel)]="person.birthCertificateCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthPlace" for="field_birthPlace">Birth Place</label>
+                    <input type="text" class="form-control" name="birthPlace" id="field_birthPlace"
+                        [(ngModel)]="person.birthPlace" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.email" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="person.email" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.postalAddress" for="field_postalAddress">Postal Address</label>
+                    <input type="text" class="form-control" name="postalAddress" id="field_postalAddress"
+                        [(ngModel)]="person.postalAddress" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.postalCode" for="field_postalCode">Postal Code</label>
+                    <input type="text" class="form-control" name="postalCode" id="field_postalCode"
+                        [(ngModel)]="person.postalCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.username" for="field_username">Username</label>
+                    <input type="text" class="form-control" name="username" id="field_username"
+                        [(ngModel)]="person.username" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.active" for="field_active">Active</label>
+                    <input type="checkbox" class="form-control" name="active" id="field_active"
+                        [(ngModel)]="person.active" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.personalDataCompletelyFilled" for="field_personalDataCompletelyFilled">Personal Data Completely Filled</label>
+                    <input type="checkbox" class="form-control" name="personalDataCompletelyFilled" id="field_personalDataCompletelyFilled"
+                        [(ngModel)]="person.personalDataCompletelyFilled" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.numberOfStudentMemberships" for="field_numberOfStudentMemberships">Number Of Student Memberships</label>
+                    <input type="number" class="form-control" name="numberOfStudentMemberships" id="field_numberOfStudentMemberships"
+                        [(ngModel)]="person.numberOfStudentMemberships" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.numberOfTeacherMemberships" for="field_numberOfTeacherMemberships">Number Of Teacher Memberships</label>
+                    <input type="number" class="form-control" name="numberOfTeacherMemberships" id="field_numberOfTeacherMemberships"
+                        [(ngModel)]="person.numberOfTeacherMemberships" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.numberOfEmployeeMemberships" for="field_numberOfEmployeeMemberships">Number Of Employee Memberships</label>
+                    <input type="number" class="form-control" name="numberOfEmployeeMemberships" id="field_numberOfEmployeeMemberships"
+                        [(ngModel)]="person.numberOfEmployeeMemberships" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.firstNameEn" for="field_firstNameEn">First Name En</label>
+                    <input type="text" class="form-control" name="firstNameEn" id="field_firstNameEn"
+                        [(ngModel)]="person.firstNameEn" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.lastNameEn" for="field_lastNameEn">Last Name En</label>
+                    <input type="text" class="form-control" name="lastNameEn" id="field_lastNameEn"
+                        [(ngModel)]="person.lastNameEn" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.mobileNumber" for="field_mobileNumber">Mobile Number</label>
+                    <input type="text" class="form-control" name="mobileNumber" id="field_mobileNumber"
+                        [(ngModel)]="person.mobileNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.phoneNumber" for="field_phoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                        [(ngModel)]="person.phoneNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateIssuePlace" for="field_birthCertificateIssuePlace">Birth Certificate Issue Place</label>
+                    <input type="text" class="form-control" name="birthCertificateIssuePlace" id="field_birthCertificateIssuePlace"
+                        [(ngModel)]="person.birthCertificateIssuePlace" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.maritalStatus" for="field_maritalStatus">Marital Status</label>
+                    <select class="form-control" name="maritalStatus" [(ngModel)]="person.maritalStatus" id="field_maritalStatus" >
+                        <option value="SINGLE">{{'cardHolderGatewayApp.MaritalStatusEnum.SINGLE' | translate}}</option>
+                        <option value="MARRIED">{{'cardHolderGatewayApp.MaritalStatusEnum.MARRIED' | translate}}</option>
+                        <option value="WIDOWED">{{'cardHolderGatewayApp.MaritalStatusEnum.WIDOWED' | translate}}</option>
+                        <option value="DIVORCED">{{'cardHolderGatewayApp.MaritalStatusEnum.DIVORCED' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.nationality" for="field_nationality">Nationality</label>
+                    <input type="text" class="form-control" name="nationality" id="field_nationality"
+                        [(ngModel)]="person.nationality" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.religion" for="field_religion">Religion</label>
+                    <input type="text" class="form-control" name="religion" id="field_religion"
+                        [(ngModel)]="person.religion" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.religiousDenomination" for="field_religiousDenomination">Religious Denomination</label>
+                    <input type="text" class="form-control" name="religiousDenomination" id="field_religiousDenomination"
+                        [(ngModel)]="person.religiousDenomination" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.bloodType" for="field_bloodType">Blood Type</label>
+                    <select class="form-control" name="bloodType" [(ngModel)]="person.bloodType" id="field_bloodType" >
+                        <option value="A_POS">{{'cardHolderGatewayApp.BloodTypeEnum.A_POS' | translate}}</option>
+                        <option value="B_POS">{{'cardHolderGatewayApp.BloodTypeEnum.B_POS' | translate}}</option>
+                        <option value="AB_POS">{{'cardHolderGatewayApp.BloodTypeEnum.AB_POS' | translate}}</option>
+                        <option value="O_POS">{{'cardHolderGatewayApp.BloodTypeEnum.O_POS' | translate}}</option>
+                        <option value="A_NEG">{{'cardHolderGatewayApp.BloodTypeEnum.A_NEG' | translate}}</option>
+                        <option value="B_NEG">{{'cardHolderGatewayApp.BloodTypeEnum.B_NEG' | translate}}</option>
+                        <option value="AB_NEG">{{'cardHolderGatewayApp.BloodTypeEnum.AB_NEG' | translate}}</option>
+                        <option value="O_NEG">{{'cardHolderGatewayApp.BloodTypeEnum.O_NEG' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.completelyRegistered" for="field_completelyRegistered">Completely Registered</label>
+                    <input type="checkbox" class="form-control" name="completelyRegistered" id="field_completelyRegistered"
+                        [(ngModel)]="person.completelyRegistered" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.cardStatus" for="field_cardStatus">Card Status</label>
+                    <select class="form-control" name="cardStatus" [(ngModel)]="person.cardStatus" id="field_cardStatus" >
+                        <option value="REQUEST_REGISTERED_AND_SUCCESSFUL_REGISTRATION_OFFICE_INQUIRY">{{'cardHolderGatewayApp.CardStatusEnum.REQUEST_REGISTERED_AND_SUCCESSFUL_REGISTRATION_OFFICE_INQUIRY' | translate}}</option>
+                        <option value="REQUEST_REGISTERED_AND_FAILED_REGISTRATION_OFFICE_INQUIRY">{{'cardHolderGatewayApp.CardStatusEnum.REQUEST_REGISTERED_AND_FAILED_REGISTRATION_OFFICE_INQUIRY' | translate}}</option>
+                        <option value="BANK_ACCOUNT_OPENED">{{'cardHolderGatewayApp.CardStatusEnum.BANK_ACCOUNT_OPENED' | translate}}</option>
+                        <option value="SENT_FOR_PRINT">{{'cardHolderGatewayApp.CardStatusEnum.SENT_FOR_PRINT' | translate}}</option>
+                        <option value="DELIVERED_TO_SECRETARIAT">{{'cardHolderGatewayApp.CardStatusEnum.DELIVERED_TO_SECRETARIAT' | translate}}</option>
+                        <option value="SENT_TO_BANK_BRANCH">{{'cardHolderGatewayApp.CardStatusEnum.SENT_TO_BANK_BRANCH' | translate}}</option>
+                        <option value="DELIVERED_TO_BANK_BRANCH">{{'cardHolderGatewayApp.CardStatusEnum.DELIVERED_TO_BANK_BRANCH' | translate}}</option>
+                        <option value="NOT_DELIVERED_TO_BANK_BRANCH">{{'cardHolderGatewayApp.CardStatusEnum.NOT_DELIVERED_TO_BANK_BRANCH' | translate}}</option>
+                        <option value="INFORMATION_CONFLICT">{{'cardHolderGatewayApp.CardStatusEnum.INFORMATION_CONFLICT' | translate}}</option>
+                        <option value="DELIVERED_TO_CUSTOMER">{{'cardHolderGatewayApp.CardStatusEnum.DELIVERED_TO_CUSTOMER' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.bankName" for="field_bankName">Bank Name</label>
+                    <input type="text" class="form-control" name="bankName" id="field_bankName"
+                        [(ngModel)]="person.bankName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.branchCode" for="field_branchCode">Branch Code</label>
+                    <input type="text" class="form-control" name="branchCode" id="field_branchCode"
+                        [(ngModel)]="person.branchCode" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

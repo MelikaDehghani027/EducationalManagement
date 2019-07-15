@@ -1,0 +1,172 @@
+
+    <div class="border-style-comp">
+        <div class="card header-style">
+            <h3>ثبت نام دانشجو</h3>
+        </div>
+
+        <!-- ...................indivisual information.................................. -->
+        <div class="row">
+                <div class="col-sm-4"  ></div>
+                <div class="col-sm-8"  >
+
+        <div class="title-style" style="margin-top:0.4em">
+            اطلاعات فردی
+        </div>
+        <div class="card card-style">
+            <div class="card-body-indiv">
+                <div class="info-body">
+                    <div class="text-style">
+                        <table>
+                            <tr>
+                                <h4>{{(selfRegister&&selfRegister.person)?selfRegister.person.firstName + " " + selfRegister.person.lastName:''}}</h4>
+                            </tr>
+                            <tr>
+                                <td> نام پدر : </td>
+                                <td> {{(selfRegister&&selfRegister.person)?selfRegister.person.fatherName:''}} </td>
+                            </tr>
+                            <tr>
+                                <td> جنسیت : </td>
+                                <td> {{(selfRegister&&selfRegister.person)?(selfRegister.person.gender | genderToPersian):''}}</td>
+                            </tr>
+                            <tr>
+                                <td> تاریخ تولد : </td>
+                                <td> {{(selfRegister&&selfRegister.person)?toShamsi(selfRegister.person.birthDate):''}} </td>
+                            </tr>
+                            <tr>
+                                <td> کد ملی :</td>
+                                <td> {{(selfRegister&&selfRegister.person)?selfRegister.person.nationalCode:''}} </td>
+                            </tr>
+                            <tr>
+                                <td> شماره شناسنامه : </td>
+                                <td> {{(selfRegister&&selfRegister.person)?selfRegister.person.birthCertificateCode:''}}
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td> سریال شناسنامه : </td>
+                                <td> {{(selfRegister&&selfRegister.person)?selfRegister.person.birthCertificateSerial:''}}
+                                    </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- </div> -->
+                    <div class="border-pic ">
+                        <img [src]="filePreviewPath">
+                        <div class="style-pic-bott">
+                            <!-- <label> {(selfRegister&&selfRegister.person)?{selfRegister.person.firstName + " " + selfRegister.person.lastName:''}}
+                                </label> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--...................EducationalInstitute information............................................  -->
+        <div class="title-style">
+            اطلاعات دانشگاه
+        </div>
+        <div class="card card-style">
+            <div class="card-body-uni">
+                <div class="info-body">
+                    <!-- <div *ngFor="let user of userArray" > -->
+                    <div class="text-style">
+                        <table>
+                            <tr>
+                                <td> دانشگاه : </td>
+                                <td> {{preRegister?preRegister.educationalInstituteName:''}} </td>
+                            </tr>
+                            <tr>
+                                <td> مقطع تحصیلی : </td>
+                                <td> {{ selfRegister?(selfRegister.degree | degreeToPersian):'' }}</td>
+                            </tr>
+                            <tr>
+                                <td> رشته : </td>
+                                <td> {{selfRegister?selfRegister.majorName:''}} </td>
+                            </tr>
+                            <!-- <tr>
+                                <td> نوع سعمیه : </td>
+                                <td> ملیکا</td>
+                            </tr><br> -->
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--...................bank information............................................  -->
+        <div class="title-style">
+            اطلاعات بانک
+        </div>
+        <div class="card card-style">
+            <div class="card-body-bank">
+                <div class="info-body">
+                    <div class="text-style">
+                        <table>
+                            <tr>
+                                <td> شعبه کد : </td>
+                                <td> {{selfRegister?selfRegister.branchCode:''}} </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--...................contact information............................................  -->
+        <div class="title-style">
+            اطلاعات تماس
+        </div>
+        <div class="card card-style">
+            <div class="card-body-contact">
+                <div class="info-body">
+                    <!-- <div *ngFor="let user of userArray" > -->
+                    <div class="text-style">
+                        <table>
+                            <tr>
+                                <td> تلفن ثابت : </td>
+                                <!-- {{user.title}}  {{selfRegister.person.phoneNumber}} -->
+                                <td> {{(selfRegister&&selfRegister.person)?selfRegister.person.phoneNumber:''}} </td>
+                            </tr>
+                            <tr>
+                                <td> تلفن همراه : </td>
+                                <td> {{(selfRegister&&selfRegister.person)?selfRegister.person.mobileNumber:''}} </td>
+                            </tr>
+                            <tr>
+                                <td> آدرس : </td>
+                                <td> {{(selfRegister&&selfRegister.person)?selfRegister.person.postalAddress:''}} </td>
+                            </tr>
+                            <!-- <tr>
+                                <td>  توضیحات :  </td>
+                                <td> {{selfRegister.person.}}</td>
+                            </tr> -->
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--...................Load evidence............................................  -->
+        <!-- <div class="title-style">
+            بارگزاری مدارک
+        </div>
+        <div class="card card-style">
+            <div class="card-body-load">
+                <div class="info-body">
+                    <label for="neme">بارگذاری کارت ملی </label>
+
+                    <label for="neme">بارگذاری شناسنامه </label>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- -------------------------div btn----------------------------------------- -->
+        <div class="card-btn">
+            <button class=" btn right-btn" (click)="open()">
+                تایید اطلاعات 
+            </button>
+            <button class=" btn left-btn  ">ویرایش </button>
+
+
+        </div>
+        <!--...................end border comp............................................  -->
+    </div>
+</div>

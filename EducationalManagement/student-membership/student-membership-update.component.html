@@ -1,0 +1,130 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-student-membership-heading" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.home.createOrEditLabel">Create or edit a Student Membership</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!studentMembership.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="studentMembership.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.studentId" for="field_studentId">Student Id</label>
+                    <input type="text" class="form-control" name="studentId" id="field_studentId"
+                        [(ngModel)]="studentMembership.studentId" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.majorName" for="field_majorName">Major Name</label>
+                    <input type="text" class="form-control" name="majorName" id="field_majorName"
+                        [(ngModel)]="studentMembership.majorName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.degree" for="field_degree">Degree</label>
+                    <input type="text" class="form-control" name="degree" id="field_degree"
+                        [(ngModel)]="studentMembership.degree" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.registerationDate" for="field_registerationDate">Registeration Date</label>
+                    <div class="input-group">
+                        <input id="field_registerationDate" type="text" class="form-control" name="registerationDate" ngbDatepicker  #registerationDateDp="ngbDatepicker" [(ngModel)]="studentMembership.registerationDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="registerationDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.startSemester" for="field_startSemester">Start Semester</label>
+                    <input type="text" class="form-control" name="startSemester" id="field_startSemester"
+                        [(ngModel)]="studentMembership.startSemester" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.academicOrientation" for="field_academicOrientation">Academic Orientation</label>
+                    <input type="text" class="form-control" name="academicOrientation" id="field_academicOrientation"
+                        [(ngModel)]="studentMembership.academicOrientation" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.transferStatus" for="field_transferStatus">Transfer Status</label>
+                    <select class="form-control" name="transferStatus" [(ngModel)]="studentMembership.transferStatus" id="field_transferStatus" >
+                        <option value="RELOCATED">{{'cardHolderGatewayApp.TransferStatusEnum.RELOCATED' | translate}}</option>
+                        <option value="GUEST">{{'cardHolderGatewayApp.TransferStatusEnum.GUEST' | translate}}</option>
+                        <option value="REGULAR">{{'cardHolderGatewayApp.TransferStatusEnum.REGULAR' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.academicDepartment" for="field_academicDepartment">Academic Department</label>
+                    <input type="text" class="form-control" name="academicDepartment" id="field_academicDepartment"
+                        [(ngModel)]="studentMembership.academicDepartment" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.admissionType" for="field_admissionType">Admission Type</label>
+                    <select class="form-control" name="admissionType" [(ngModel)]="studentMembership.admissionType" id="field_admissionType" >
+                        <option value="EXCEPTIONALTALENT">{{'cardHolderGatewayApp.AdmissionTypeEnum.EXCEPTIONALTALENT' | translate}}</option>
+                        <option value="ENTRANCEEXAM">{{'cardHolderGatewayApp.AdmissionTypeEnum.ENTRANCEEXAM' | translate}}</option>
+                        <option value="NOENTRANCEEXAM">{{'cardHolderGatewayApp.AdmissionTypeEnum.NOENTRANCEEXAM' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.admissionQuota" for="field_admissionQuota">Admission Quota</label>
+                    <select class="form-control" name="admissionQuota" [(ngModel)]="studentMembership.admissionQuota" id="field_admissionQuota" >
+                        <option value="FACULTY_MEMBERS">{{'cardHolderGatewayApp.AdmissionQuotasEnum.FACULTY_MEMBERS' | translate}}</option>
+                        <option value="OPEN">{{'cardHolderGatewayApp.AdmissionQuotasEnum.OPEN' | translate}}</option>
+                        <option value="REGIONS">{{'cardHolderGatewayApp.AdmissionQuotasEnum.REGIONS' | translate}}</option>
+                        <option value="WARRIORS">{{'cardHolderGatewayApp.AdmissionQuotasEnum.WARRIORS' | translate}}</option>
+                        <option value="VETERANS">{{'cardHolderGatewayApp.AdmissionQuotasEnum.VETERANS' | translate}}</option>
+                        <option value="MARTYRS">{{'cardHolderGatewayApp.AdmissionQuotasEnum.MARTYRS' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.numberOfAllowedSemesters" for="field_numberOfAllowedSemesters">Number Of Allowed Semesters</label>
+                    <input type="number" class="form-control" name="numberOfAllowedSemesters" id="field_numberOfAllowedSemesters"
+                        [(ngModel)]="studentMembership.numberOfAllowedSemesters" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.faculty" for="field_faculty">Faculty</label>
+                    <input type="text" class="form-control" name="faculty" id="field_faculty"
+                        [(ngModel)]="studentMembership.faculty" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.imageId" for="field_imageId">Image Id</label>
+                    <input type="text" class="form-control" name="imageId" id="field_imageId"
+                        [(ngModel)]="studentMembership.imageId" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.completelyRegistered" for="field_completelyRegistered">Completely Registered</label>
+                    <input type="checkbox" class="form-control" name="completelyRegistered" id="field_completelyRegistered"
+                        [(ngModel)]="studentMembership.completelyRegistered" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.active" for="field_active">Active</label>
+                    <input type="checkbox" class="form-control" name="active" id="field_active"
+                        [(ngModel)]="studentMembership.active" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.person" for="field_person">Person</label>
+                    <select class="form-control" id="field_person" name="person" [(ngModel)]="studentMembership.personId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="personOption.id" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.educationalInstitute" for="field_educationalInstitute">Educational Institute</label>
+                    <select class="form-control" id="field_educationalInstitute" name="educationalInstitute" [(ngModel)]="studentMembership.educationalInstituteId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="educationalInstituteOption.id" *ngFor="let educationalInstituteOption of educationalinstitutes; trackBy: trackEducationalInstituteById">{{educationalInstituteOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,553 @@
+<div class="border-style-comp">
+    <div class="card header-style">
+        <h3>ثبت نام دانشجو</h3>
+    </div>
+
+    <!-- ...................indivisual information.................................. -->
+    <!-- <app-individual-info></app-individual-info> -->
+    <div class="row">
+        <div class="col-sm-4" style="padding-left: 3em">
+            <div class="border-pic">
+                <img [src]="imageBase64" [hidden]="imageTag">
+                <div class="style-pic-bott">
+                    {{(firstName?firstName:"") + " " + (lastName?lastName:"")}}
+                </div>
+                <!-- <div class="style-fa-pencil">
+
+                                         ویرایش عکس
+                                    </i>
+                         </div> -->
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            <div [ngClass]="{'indiv-mob-active':showUniPage == 1}">
+                <div [ngClass]="{'indiv-mob-deactive':showUniPage == 2}">
+                    <div [ngClass]="{'indiv-mob-deactive':showUniPage == 3}">
+                        <form [formGroup]="personForm">
+                            <div class="style-record">
+                                پر کردن همه فیلد ها به غیر از توضیحات الزامی می باشد
+                            </div>
+                            <div class="title-style ">
+                                اطلاعات فردی
+                            </div>
+
+                            <div class="grid-container-indiv">
+                                <div class="">
+                                    <div class="syle-div ">
+                                        <label for="firstName">نام </label>
+                                        <input formControlName="firstName" matInput jhiMask="P" allCharacters="true"
+                                            required [(ngModel)]="firstName" type="text" class="form-control sh-in" id="firstName">
+                                        <div class="msg-error" *ngIf="showValidationErrors('firstName')">
+                                            نام خود را وارد کنید
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="syle-div">
+                                    <label for="lastName"> نام خانوادگی </label>
+                                    <input formControlName="lastName" matInput jhiMask="P" allCharacters="true"
+                                        required [(ngModel)]="lastName" type="text" class="form-control sh-in" id="lastName">
+                                    <div class="msg-error" *ngIf="showValidationErrors('lastName')">
+                                        نام خانوادگی خود را وارد کنید
+                                    </div>
+                                </div>
+
+
+                                <!-- -------------------- -upload pic  --------------- -->
+
+                                <div class="syle-div">
+                                    <div class="pic-deactive2">
+
+                                        <div class="upload-btn-wrapper">
+                                            <label for="picture">بارگذاری عکس</label><br>
+                                            <button class="style-btn-upload">
+                                                <li class="fa fa-camera"></li>
+                                                <input type="file" formControlName="pic" (change)="onSelectFile($event)"
+                                                    ng2FileSelect [uploader]="uploader" required accept="images/*" id="file_identification_page_1" />
+                                            </button>
+                                            {{filename}}
+
+                                            <div class=" msg-error" style="width:20em;" *ngIf="showValidationErrors('pic')">
+                                                عکس خود را بارگزاری کنید
+                                            </div>
+
+                                            <!-- <button mat-raised-button color="primary" class="full-width full-height custom-file-upload">
+                                                    <label for="file_identification_page_1">انتخاب فایل</label>
+                                                        </button>
+                                                <div class="edit-file-upload">
+                                                    <button mat-raised-button color="primary" class="full-width full-height custom-file-upload" (click)="selectNew()">
+                                                        <label for="file_identification_page_1">انتخاب مجدد</label>
+                                                    </button>
+                                                    <button mat-raised-button color="warn" class="full-width full-height custom-file-upload" (click)="deleteFile('identificationIamgePageOne')">
+                                                        <div>حذف</div>
+                                                    </button>
+                                                </div>
+                                                    <input id="file_identification_page_1" #file1 type="file" ng2FileSelect  [uploader]="uploader" accept="images/*"/><br/>
+                                                </div> -->
+                                        </div>
+                                    </div>
+
+
+                                    <div class="pic-deactive">
+
+                                        <div class=" pic-active">
+                                            <ng-template #content let-modal>
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+                                                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="border-pic2">
+                                                        <img [src]="imageBase64" [hidden]="imageTag">
+                                                        <div class="style-pic-bott2">
+                                                            {{(firstName?firstName:"") + " " + (lastName?lastName:"")}}
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="">
+                                                        <div class="">
+
+
+                                                            <div class="upload-btn-wrapper" style="margin-right: -5em;margin-top: 3em">
+                                                                <button class="style-btn-upload2">
+                                                                    <!-- <li class="fa fa-camera"></li> -->
+                                                                    <input type="file" formControlName="pic" (change)="onSelectFile($event)"
+                                                                        ng2FileSelect [uploader]="uploader" required
+                                                                        accept="images/*" id="file_identification_page_1" />
+                                                                </button>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+                                                </div>
+                                            </ng-template>
+
+                                            <!-- <button class="style-btn-upload" (click)="open(content)">Launch demo modal</button> -->
+                                            <div [ngClass]="{'cancel-btn-deactive':showUniPage == 2 }">
+                                                <div [ngClass]="{'cancel-btn-deactive':showUniPage == 3 }">
+                                                    <div class="upload-btn-wrapper" style="margin-top: -50em;margin-bottom:1.3em">
+                                                        <label for="picture">بارگذاری عکس</label><br>
+                                                        <button class="style-btn-upload" (click)="open(content)">
+                                                            <li class="fa fa-camera"></li>
+                                                            <!-- <input type="file" formControlName="pic" (change)="onSelectFile($event)" ng2FileSelect [uploader]="uploader" required accept="images/*"
+                                                                id="file_identification_page_1" /> -->
+                                                        </button>
+                                                        {{filename}}
+
+                                                        <div class=" msg-error" style="width:20em;" *ngIf="showValidationErrors('pic')">
+                                                            عکس خود را بارگزاری کنید
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                                <!-- --------------------    end  upload pic  --------- -->
+
+                                <div class="syle-div">
+                                    <label for="fatherName">نام پدر</label>
+                                    <input formControlName="fatherName" matInput jhiMask="P" allCharacters="true"
+                                        required type="text" class="form-control sh-in" id="fatherName">
+                                    <div class=" msg-error" *ngIf="showValidationErrors('fatherName')">
+                                        نام پدر خود را وارد کنید
+                                    </div>
+                                </div>
+
+                                <div class="syle-div">
+                                    <label for="gender">جنسیت</label>
+                                    <div class="border-btn sh-in  " formControlName="gender" required>
+
+                                        <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
+                                            <label ngbButtonLabel class="btn marg-btn">
+                                                <input ngbButton formControlName="gender" required type="radio" value="MALE">
+                                                مذکر
+                                            </label>
+                                            <label ngbButtonLabel class="btn marg-btn">
+                                                <input ngbButton formControlName="gender" required type="radio" value="FEMALE">
+                                                مونث
+                                            </label>
+                                            <div class=" msg-error" *ngIf="showValidationErrors('gender')">
+                                                انتخاب جنسیت الزامی می باشد
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="syle-div">
+                                    <label for="birthDate">تاریخ تولد</label>
+
+                                    <mat-datepicker #birthDatePicker></mat-datepicker>
+                                    <input formControlName="birthDate" placeholder="روز / ماه / سال " matInput
+                                        [matDatepicker]="birthDatePicker" class="form-control sh-in calendar" readonly
+                                        required (click)="birthDatePicker.open()" (dateChange)="onChangeDate($event)" />
+                                    <mat-datepicker #birthDatePicker></mat-datepicker>
+                                    <div class=" msg-error" *ngIf="showValidationErrors('birthDate')">
+
+                                        تاریخ تولد الزامی می باشد
+
+                                        <!-- <div  class="alert alert-danger" style="background-color: #F8D7DA;width:45em; "*ngIf="getFormControl('birthDate').hasError('validBirthDate')">
+                                    تاریخ تولد نمی تواند از تاریخ جاری بیشتر باشد
+                                </div> -->
+                                    </div>
+                                </div>
+
+                                <!-- <div class="syle-div box-1 ">
+                        <label for="nationalCode">کد ملی</label>
+                        <input formControlName="nationalCode" required type="text" class="form-control long-in"
+                            id="nationalCode" >
+                    </div> -->
+
+                                <div class="syle-div box-1 ">
+                                    <label for="birthCertificateCode">شماره شناسنامه</label>
+                                    <input formControlName="birthCertificateCode" matInput required jhiMask='NNNNNNNNNN'
+                                        pattern="[0-9]{10}" type="text" class="form-control long-in " id="birthCertificateCode">
+                                    <div class=" msg-error" *ngIf="showValidationErrors('birthCertificateCode')">
+                                        شماره شناسنامه خود را وارد کنید
+                                    </div>
+                                </div>
+
+
+                                <div class="syle-div">
+                                    <label for="birthCertificateSerial">سریال شناسنامه</label>
+                                    <input formControlName="birthCertificateSerial" matInput minlength="6" maxlength="6"
+                                        jhiMask='NNNNNN' pattern="[0-9]{6}" required type="text" class="form-control sh-in"
+                                        id="birthCertificateSerial">
+
+                                    <!-- <input class="number" matInput minlength="6" maxlength="6" formControlName="birthCertificateSerial"
+                                jhiMask='NNNNNN' required> -->
+                                    <div *ngIf="showValidationErrors('birthCertificateSerial')" style="width:60em">
+                                        <div class=" msg-error" *ngIf="getFormControl('birthCertificateSerial').hasError('required')">
+                                            سریال شناسنامه الزامی می باشد
+                                        </div>
+                                        <div class=" msg-error" *ngIf="getFormControl('birthCertificateSerial').hasError('minlength')">
+                                            سریال شناسنامه شش رقمی می باشد
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="syle-div">
+                                    <div class="grid-container2">
+                                        <div class="style-div2">
+                                            <label for="birthCertificateLetterSeries">سری حرفی </label>
+                                            <div>
+                                                <select formControlName="birthCertificateLetterSeries" required class=" form-control sh ">
+                                                    <option selected>الف</option>
+                                                    <option value="1">ب</option>
+                                                    <option value="2">ج</option>
+                                                    <option value="3">د</option>
+                                                </select>
+                                                <div class="msg-error" *ngIf="showValidationErrors('birthCertificateLetterSeries')">
+                                                    سری حرفی الزامی می باشد
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="style-div2">
+                                            <label for="picture">سری عددی</label>
+                                            <input formControlName="birthCertificateTwoDigitSeries" minlength="2"
+                                                maxlength="2" jhiMask='NN' pattern="[0-9]{2}" matInput required class="form-control sh"
+                                                id="birthCertificateTwoDigitSeries">
+
+                                            <div *ngIf="showValidationErrors('birthCertificateTwoDigitSeries')">
+                                                <div class=" msg-error" *ngIf="getFormControl('birthCertificateTwoDigitSeries').hasError('required')">
+                                                    سری عددی الزامی می باشد
+                                                </div>
+                                                <div class="msg-error" *ngIf="getFormControl('birthCertificateTwoDigitSeries').hasError('minlength')">
+                                                    سری عددی دو رقمی می باشد
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- [ngStyle]="{'visibility': showUniPage === 1 ? 'visible' : 'collapse' }" -->
+                            <div class="btn-mob">
+                                <div class="btn-mob2">
+                                    <div [ngClass]="{'cancel-btn-deactive':showUniPage == 2 }">
+                                        <div [ngClass]="{'cancel-btn-deactive':showUniPage == 3 }">
+                                            <button class="btn btn-cancel " style="margin-top:-5em" (click)="goNextPage()">
+                                                ادامه
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+            <!--...................         educational institute information       ................................  -->
+            <!-- <app-uni-info></app-uni-info> -->
+
+            <div class="uni-mob-deactive">
+                <div [ngClass]="{'uni-mob-active':showUniPage == 2}">
+
+                    <div>
+                        <form [formGroup]="studentMembershipForm">
+                            <!-- <div class="style-record">
+                    رکورداجباری
+                </div> -->
+                            <div class="title-style ">
+                                اطلاعات دانشگاه
+                            </div>
+
+                            <div class="grid-container-uni">
+                                <div class="syle-div ">
+                                    <label for="educationalInstituteName">نام دانشگاه</label>
+                                    <input formControlName="educationalInstituteName" type="text" class="form-control long-in"
+                                        id="educationalInstituteName">
+                                    <!-- <div class="alert alert-danger" *ngIf="showValidationErrors('educationalInstituteName')">
+                            نام دانشگاه خود را وارد کنید
+                               </div> -->
+                                </div>
+
+                                <div class="syle-div">
+                                    <label for="degree"> مقطع تحصیلی</label>
+                                    <div class="border-btn-2  ">
+
+                                        <div formControlName="degree" class="btn-group btn-group-toggle" ngbRadioGroup
+                                            name="radioBasic">
+                                            <label ngbButtonLabel class="btn marg-btn">
+                                                <input ngbButton type="radio" value="ASSOCIATE"> کاردانی
+                                            </label>
+                                            <label ngbButtonLabel class="btn marg-btn">
+                                                <input ngbButton type="radio" value="BACHELOR"> کارشناسی
+                                            </label>
+                                            <label ngbButtonLabel class="btn marg-btn">
+                                                <input ngbButton type="radio" value="MASTER"> کارشناسی‌ارشد
+                                            </label>
+                                            <label ngbButtonLabel class="btn marg-btn">
+                                                <input ngbButton type="radio" value="DOCTORAL"> دکترا
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="syle-div ">
+                                    <label for="majorName">رشته تحصیلی</label>
+                                    <input formControlName="majorName" matInput jhiMask="P" allCharacters="true"
+                                        required type="text" class="form-control long-in" id="majorName">
+                                    <div class=" msg-error" *ngIf="showValidationErrorsUniversity('majorName')">
+                                        رشته دانشگاه خود را وارد کنید
+                                    </div>
+                                </div>
+
+                                <!--                 <div class="syle-div">
+                    <label> نوع سهمیه</label>
+                    <div class="border-btn-2">
+
+                        <div formControlName="typeStock" class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic">
+                            <label ngbButtonLabel class="btn marg-btn">
+                                <input ngbButton type="radio" value="middle"> روزانه
+                            </label>
+                            <label ngbButtonLabel class="btn marg-btn">
+                                <input ngbButton type="radio" [value]="false"> شبانه
+                            </label>
+                            <label ngbButtonLabel class="btn marg-btn">
+                                <input ngbButton type="radio" value="ر"> اتقالی
+                            </label>
+                            <label ngbButtonLabel class="btn marg-btn">
+                                <input ngbButton type="radio" value="false"> سهمیه
+                            </label>
+                        </div>
+
+                    </div>
+                </div> -->
+                            </div>
+                            <div class="btn-mob">
+                                <div [ngClass]="{'cancel-btn-active':showUniPage == 2}" style="margin-left: 5em">
+                                    <button class="btn btn-cancel" style="margin-right:-3.9em " (click)="goBackPage()">
+                                        بازگشت
+                                    </button>
+
+                                    <button class="btn btn-cancel" style="width:12rem;margin-right:13.3em ;margin-top:-7em"
+                                        (click)="goNextPage2()">
+                                        ادامه
+                                    </button>
+
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+            <!--...................bank information............................................  -->
+            <!-- <app-bank-info></app-bank-info> -->
+            <div class="cantact-bank-mob-deactive">
+                <div [ngClass]="{'cantact-bank-mob-active':showUniPage == 3 }">
+                    <form [formGroup]="bankForm">
+                        <!-- <div class="style-record">
+                    رکورداجباری
+                </div> -->
+                        <div class="title-style ">
+                            اطلاعات بانک
+                        </div>
+                        <div class="grid-container-bank">
+                            <div class="syle-div ">
+                                <label for="branchCode">کد شعبه بانک</label>
+                                <input formControlName="branchCode" required type="text" class="form-control long-in"
+                                    id="branchCode" pattern="[0-9]*">
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <br><br>
+                    <!--...................contact information............................................  -->
+                    <!-- <app-call-info></app-call-info> -->
+
+                    <form [formGroup]="contactForm">
+
+                        <!-- <div class="style-record">
+                    رکورداجباری
+                </div> -->
+                        <div class="title-style ">
+                            اطلاعات تماس
+                        </div>
+                        <div class="grid-container-contact">
+
+                            <div class="syle-div">
+                                <label for="phoneNumber">تلفن ثابت </label>
+                                <input formControlName="phoneNumber" matInput jhiMask='NNNNNNNNNNN' pattern="[0-9]{11}"
+                                    minlength="11" required type="text" class="form-control sh-in" id="phoneNumber">
+                                <!-- <div class="alert alert-danger" *ngIf=" showValidationErrorsContact('phoneNumber')">
+
+                        </div> -->
+
+                                <div *ngIf=" showValidationErrorsContact('phoneNumber')">
+                                    <div class=" msg-error" *ngIf=" getFormControlContact('phoneNumber').hasError('required')">
+                                        تلفن ثابت الزامی می باشد
+                                    </div>
+                                    <div class="msg-error" *ngIf=" getFormControlContact('phoneNumber').hasError('minlength')">
+                                        تلفن ثابت یازده رقمی می باشد
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="syle-div">
+                                <label for="mobileNumber">تلفن همراه</label>
+                                <input formControlName="mobileNumber" matInput jhiMask='NNNNNNNNNNN' pattern="[0-9]{11}"
+                                    minlength="10" required type="text" class="form-control sh-in" id="mobileNumber">
+                                <!-- <div class="alert alert-danger" *ngIf=" showValidationErrorsContact('mobileNumber')">
+                                تلفن همراه الزامی می باشد
+                            </div> -->
+                                <div *ngIf=" showValidationErrorsContact('mobileNumber')">
+                                    <div class="msg-error" *ngIf=" getFormControlContact('mobileNumber').hasError('required')">
+                                        تلفن همراه الزامی می باشد
+                                    </div>
+                                    <div class="msg-error" *ngIf=" getFormControlContact('mobileNumber').hasError('minlength')">
+                                        تلفن همراه ده رقمی می باشد
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="syle-div box-1 ">
+                                <label for="email"> پست الکترونیک</label>
+                                <input formControlName="email" matInput required type="text" class="form-control long-in"
+                                    id="email" pattern="[^ @]+@[^ @]+.[a-z]+">
+                                <div class=" msg-error" *ngIf=" showValidationErrorsContact('email')">
+                                    پست الکترونیک خود را وارد کنید
+                                </div>
+                            </div>
+                            <div class="syle-div box-1 ">
+                                <label for="postalAddress"> آدرس</label>
+                                <input formControlName="postalAddress" matInput jhiMask='C' required type="text" class="form-control long-in"
+                                    id="postalAddress">
+                                <div class=" msg-error" *ngIf=" showValidationErrorsContact('postalAddress')">
+                                    آدرس خود را وارد کنید
+                                </div>
+
+                            </div>
+                            <div class="syle-div box-1 ">
+                                <label for="caption">توضیحات</label>
+                                <input formControlName="caption" matInput jhiMask='C' pattern="{40}" required type="text"
+                                    class="form-control long-in" id="caption">
+                                <div class="msg-error" *ngIf=" showValidationErrorsContact('caption')">
+                                    توضیحات خود را وارد کنید
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <br><br>
+                    <!--...................Load evidence..............................  -->
+                    <!-- <app-load-evidences></app-load-evidences> -->
+                    <!-- <form [formGroup]="LoadForm">
+            <div class="style-record">
+                رکورداجباری
+            </div>
+            <div class="title-style ">
+                بارگزاری مدارک
+            </div>
+            <div>
+                <div class="grid-container-load">
+                    <div class="syle-div">
+                        <div class="upload-btn-wrapper ">
+                            <label for="neme">بارگذاری کارت ملی </label>
+                            <button class="style-btn-upload">
+                                <li class="fa fa-camera"></li>
+                            </button>
+                            <input type="file" />
+                        </div>
+                    </div>
+                    <div class="syle-div">
+                        <div class="upload-btn-wrapper ">
+                            <label for="neme">بارگذاری شناسنامه </label>
+                            <button class="style-btn-upload">
+                                <li class="fa fa-camera"></li>
+                            </button>
+                            <input type="file" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form> -->
+
+                    <!-----------------  btn ----------------------------------------- -->
+                    <div class="card-btn btn-submit">
+
+                        <!-- <button class="btn submit-btn " (click)="okInformation()">saveAndCreate -->
+                        <button class="btn submit-btn " (click)="saveAndCreate()">
+                            ثبت اطلاعات
+                        </button>
+                        <div class="btn-mob">
+                            <div [ngClass]="{'cancel-btn-active':showUniPage == 3 }">
+                                <button class="btn btn-cancel " style="margin-right: -13.9em ; margin-top:-6.5em;"
+                                    (click)="goNextPage()">
+                                    بازگشت
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- bank-contact-mob -->
+        </div> <!-- end col 8 -->
+    </div> <!-- end row -->
+</div> <!-- end border comp -->

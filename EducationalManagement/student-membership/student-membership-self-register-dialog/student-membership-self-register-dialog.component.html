@@ -1,0 +1,81 @@
+<!-- <div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <p>Hello, {{name}}!</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div> -->
+
+
+        
+<div class=" dialog-card ">
+    <div *ngIf="beforeSelfRegister" [hidden]="!beforeSelfRegister">
+        <div class="header-card ">
+            <div class="icon-title">
+    
+                <!-- <i class="fa fa-list-ul  " aria-hidden="true"></i> -->
+            </div>
+            <p class="title-style">تایید اطلاعات</p>
+        </div><br><br>
+    
+        <div class="body-card" style="margin-top: -15px">
+            <p >
+               از درست بودن اطلاعات وارد شده مطمئن شوید<br>
+               از جدید بودن و مناسب بودن عکس ارسالی مطمئن شوید
+         
+            </p>
+        </div>
+    
+    
+        <div class="footer-card">
+            <button type="button" class="style-btn-close" (click)="activeModal.close('Close click')">
+                انصراف
+            </button>
+            <button type="button" [disabled]="submitButtonDisabled" [ngClass]="{'btn-disabled': submitButtonDisabled}" class="style-btn-agree" (click)="submit()">
+                موافقم
+            </button><br><br>
+            <p style="font-size:9px ;color:black ; margin-right: 4em;">
+                شما می توانید پس از تایید اطلاعات از سمت مرجع نسبت به تغییر رمز خود اقدام نمایید
+            </p><br>
+        </div>
+    </div>
+    <div *ngIf="!beforeSelfRegister" [hidden]="beforeSelfRegister">
+        <div class="header-card ">
+            <div class="icon-title">
+                <!-- <i class="fa fa-list-ul  " aria-hidden="true"></i> -->
+            </div>
+            <p class="title-style">ثبت نام با موفقیت انجام شد</p>
+        </div><br>
+    
+        <div class="body-card">
+            <p style="font-size: 12px ; margin-top:-10px">
+                شما می توانید با شماره ملی خود به عنوان کلمه کاربری .و رمز عبور وارد سیستم شوید تا از وضعیت صدور کارت
+                خود مطلع شوید
+            </p>
+            <div style="color:black;margin-right: 4em;margin-top:-14px">
+                    <p> نام کاربری : {{personUserPass?personUserPass.username:""}} </p>
+                    <p> رمز عبور : {{personUserPass?personUserPass.password:""}} </p>
+            </div>
+          
+           
+    
+        </div>
+    
+        <div class="footer-card" style="margin-top:-20px">
+            <button type="button" class="back-btn" (click)="proceed()">
+                تایید
+            </button><br><br>
+            <p style="font-size:9px ;color:black ; margin-right: 4em;">
+   شما پس از اولین ورود باید رمز عبور خود را تغییر دهید      
+            </p><br>
+        </div>
+    </div>
+</div>
+
+<!--------------  dialog agree  -------------->
+

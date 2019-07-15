@@ -1,0 +1,167 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="person">
+            <h2><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.detail.title">Person</span> {{person.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{person.firstName}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{person.lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.fatherName">Father Name</span></dt>
+                <dd>
+                    <span>{{person.fatherName}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.nationalCode">National Code</span></dt>
+                <dd>
+                    <span>{{person.nationalCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.marjaaCode">Marjaa Code</span></dt>
+                <dd>
+                    <span>{{person.marjaaCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateSerial">Birth Certificate Serial</span></dt>
+                <dd>
+                    <span>{{person.birthCertificateSerial}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.imageId">Image Id</span></dt>
+                <dd>
+                    <span>{{person.imageId}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthDate">Birth Date</span></dt>
+                <dd>
+                    <span>{{person.birthDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.gender">Gender</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cardHolderGatewayApp.PersonGenderEnum.' + person.gender}}">{{person.gender}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateLetterSeries">Birth Certificate Letter Series</span></dt>
+                <dd>
+                    <span>{{person.birthCertificateLetterSeries}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateTwoDigitSeries">Birth Certificate Two Digit Series</span></dt>
+                <dd>
+                    <span>{{person.birthCertificateTwoDigitSeries}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateCode">Birth Certificate Code</span></dt>
+                <dd>
+                    <span>{{person.birthCertificateCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthPlace">Birth Place</span></dt>
+                <dd>
+                    <span>{{person.birthPlace}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.email">Email</span></dt>
+                <dd>
+                    <span>{{person.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.postalAddress">Postal Address</span></dt>
+                <dd>
+                    <span>{{person.postalAddress}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.postalCode">Postal Code</span></dt>
+                <dd>
+                    <span>{{person.postalCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.username">Username</span></dt>
+                <dd>
+                    <span>{{person.username}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.active">Active</span></dt>
+                <dd>
+                    <span>{{person.active}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.personalDataCompletelyFilled">Personal Data Completely Filled</span></dt>
+                <dd>
+                    <span>{{person.personalDataCompletelyFilled}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.numberOfStudentMemberships">Number Of Student Memberships</span></dt>
+                <dd>
+                    <span>{{person.numberOfStudentMemberships}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.numberOfTeacherMemberships">Number Of Teacher Memberships</span></dt>
+                <dd>
+                    <span>{{person.numberOfTeacherMemberships}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.numberOfEmployeeMemberships">Number Of Employee Memberships</span></dt>
+                <dd>
+                    <span>{{person.numberOfEmployeeMemberships}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.firstNameEn">First Name En</span></dt>
+                <dd>
+                    <span>{{person.firstNameEn}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.lastNameEn">Last Name En</span></dt>
+                <dd>
+                    <span>{{person.lastNameEn}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.mobileNumber">Mobile Number</span></dt>
+                <dd>
+                    <span>{{person.mobileNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.phoneNumber">Phone Number</span></dt>
+                <dd>
+                    <span>{{person.phoneNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.birthCertificateIssuePlace">Birth Certificate Issue Place</span></dt>
+                <dd>
+                    <span>{{person.birthCertificateIssuePlace}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.maritalStatus">Marital Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cardHolderGatewayApp.MaritalStatusEnum.' + person.maritalStatus}}">{{person.maritalStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.nationality">Nationality</span></dt>
+                <dd>
+                    <span>{{person.nationality}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.religion">Religion</span></dt>
+                <dd>
+                    <span>{{person.religion}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.religiousDenomination">Religious Denomination</span></dt>
+                <dd>
+                    <span>{{person.religiousDenomination}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.bloodType">Blood Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cardHolderGatewayApp.BloodTypeEnum.' + person.bloodType}}">{{person.bloodType}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.completelyRegistered">Completely Registered</span></dt>
+                <dd>
+                    <span>{{person.completelyRegistered}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.cardStatus">Card Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cardHolderGatewayApp.CardStatusEnum.' + person.cardStatus}}">{{person.cardStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.bankName">Bank Name</span></dt>
+                <dd>
+                    <span>{{person.bankName}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementPerson.branchCode">Branch Code</span></dt>
+                <dd>
+                    <span>{{person.branchCode}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/person', person.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

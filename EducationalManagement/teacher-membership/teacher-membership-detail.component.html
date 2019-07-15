@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="teacherMembership">
+            <h2><span jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.detail.title">Teacher Membership</span> {{teacherMembership.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.personnelCode">Personnel Code</span></dt>
+                <dd>
+                    <span>{{teacherMembership.personnelCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{teacherMembership.startDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.academicRank">Academic Rank</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cardHolderGatewayApp.AcademicRankEnum.' + teacherMembership.academicRank}}">{{teacherMembership.academicRank}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.person">Person</span></dt>
+                <dd>
+                    <div *ngIf="teacherMembership.personId">
+                        <a [routerLink]="['/person', teacherMembership.personId, 'view']">{{teacherMembership.personId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.educationalInstitute">Educational Institute</span></dt>
+                <dd>
+                    <div *ngIf="teacherMembership.educationalInstituteId">
+                        <a [routerLink]="['/educational-institute', teacherMembership.educationalInstituteId, 'view']">{{teacherMembership.educationalInstituteId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/teacher-membership', teacherMembership.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

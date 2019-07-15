@@ -1,0 +1,93 @@
+<div class="pre-page">
+    <div class="container pre-register-content" [hidden]="!showPreRegister">
+        <div>
+            <div class="col-md-3"></div>
+            <!-- col-md-6 -->
+            <form [formGroup]="personForm">
+                <div class="border-signup">
+                    <div class="form-login pre-register-form mx-auto">
+                        <p style="text-align: center; font-size: 24px ; color:#07294d ; margin-top: 14px ;">
+                            ثبت نام دانشجو</p>
+                        <br/>
+                        <label for="national-code" style="font-size: 14px">شماره ملی</label>
+
+
+                        <input matInput jhiMask='NNNNNNNNNN'  formControlName="nationalCode" required placeholder="شماره ملی خود را وارد کنید" class="form-control input-style "
+                            [(ngModel)]="nationalCode" />
+
+                        <!-- <input matInput jhiMask='NNNNNNNNNN' formControlName="nationalId" required> -->
+                        <div *ngIf="showValidationErrors('nationalCode')">
+                                <div class=" msg-error" *ngIf="getFormControl('nationalCode').hasError('required')">
+                                        کد ملی الزامی می باشد
+                                    </div>
+                                    <div class=" msg-error"  *ngIf="getFormControl('nationalCode').hasError('minlength')">
+                                        کد ملی ده رقمی می باشد
+                                    </div>
+                                    <div class=" msg-error"  *ngIf="getFormControl('nationalCode').hasError('validNationalId')">
+                                        کد ملی وارد شده صحیح نمی باشد
+                                    </div>
+                            </div>
+
+                        <br/>
+                        <div>
+                            <div class="checkbox">
+                                <label style="font-size: 12pxs">
+                                    <input type="checkbox" id="fluency" defaultChecked> ‌ ‌
+                                    <a (click)="acceptLow()" style="margin-right:1px">قوانین</a><a style=" color: #c1c1c1;">
+                                    و </a><a (click)="acceptLow()">مقررات</a> <a style=" color: #c1c1c1;"> سایت را پذیرفته‌ام.
+                                        </a>
+                                </label>
+                            </div>
+
+                            <div [hidden]="!acceptError" class="alert">
+                                <span class="closebtn" style="color:red ; font-size:11px ; margin-top: -1.5em"onclick="this.parentElement.style.display='none';">&times;
+                                <strong> خطا  ! </strong>  از پدیرش قوانین و مقررات مطمئن شوید
+                            </span>
+                            </div>
+
+                        </div>
+                        <div class="wrapper">
+                            <span class="group-btn">
+                                <!-- <button class="btn btn-primary btn-block" (click)="preRegister()" >ثبت‌ نام</button> -->
+                                <button class="btn btn-primary btn-block" (click)="saveAndCreate()">ثبت‌ نام</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3"></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="container " [hidden]="showPreRegister">
+        <div class="accept-low">
+
+            <div class="content-accept">
+                    <br><h4>شرایط و قوانین استفاده از خدمات سامانه مرجع : </h4>
+
+                    کاربر گرامی لطفاً موارد زیر را جهت استفاده بهینه از خدمات سامانه مرجع به دقت ملاحظه فرمایید. ورود کاربران به سامانه مرجع و ثبت نام در هر زمان به معنی پذیرفتن کامل کلیه شرایط و قوانین سامانه مرجع از سوی کاربر است.
+                    
+                    <br>لازم به ذکر است شرایط و قوانین مندرج، جایگزین کلیه توافق‏‌های قبلی محسوب می‏‌شود.<br>
+                    
+                    <br><h4> قوانین عمومی: </h4> 
+                    
+                   <br>توجه داشته باشید تمامی اصول و رویه‏‌های سامانه مرجع منطبق با قوانین جمهوری اسلامی ایران، قانون تجارت الکترونیک است و متعاقبا کاربر نیز موظف به رعایت قوانین مرتبط با کاربر است. در صورتی که در قوانین مندرج، رویه‏‌ها و خدمات سامانه مرجع تغییراتی در آینده ایجاد شود، در صفحه قوانین و مقررات  به روز رسانی خواهد شد و شما توافق می‏‌کنید که استفاده مستمر شما از سایت به معنی پذیرش هرگونه تغییر است.<br>
+                    
+                   <br><h4>تعریف مشتری یا کاربر: </h4>
+                    
+                   <br>مشتری یا کاربر به شخصی گفته می‌شود که با اطلاعات کاربری خود که در فرم ثبت نام درج کرده است، به ثبت نام یا هرگونه استفاده از خدمات سامانه مرجع اقدام نماید.<br>
+                    
+                   <br><h4> سیاست‏‌های رعایت حریم شخصی: </h4>
+                    
+                   <br>سامانه مرجع به اطلاعات خصوصی اشخاصى که از خدمات سامانه استفاده می‏‌کنند، احترام گذاشته و از آن محافظت می‏‌کند. سامانه مرجع متعهد می‏‌شود در حد توان از حریم شخصی شما دفاع کند و در این راستا، تکنولوژی مورد نیاز برای هرچه مطمئن‏‌تر و امن‏‌تر شدن استفاده شما از سایت را، توسعه دهد. در واقع با استفاده از سامانه مرجع ، شما رضایت خود را از این سیاست نشان می‏‌دهید. همه مطالب در دسترس از طریق هر یک از خدمات وب سایت نوین زعفران ، مانند لوگو، علائم تجاری، متن، توضیحات، گرافیک، آرم، تصاویر و کپی، داده‌ها و کلیه محتوای تولید شده توسط سامانه مرجع جزئی از اموال سامانه محسوب می‏‌شود و حق استفاده و نشر تمامی مطالب موجود و در دسترس در انحصار سامانه مرجع است و هرگونه استفاده بدون کسب مجوز کتبی، حق پیگرد قانونی را برای سامانه مرجع محفوظ می‏‌دارد.<br>
+            </div><br><br>
+            <button (click)="backPreRegister()" class="btn" style="font-size: 16px;background-color:  #07294d; color:white ;
+                    width:200px;
+                    height:50px;  border-radius:10px;">
+                بازگشت </button>
+        </div>
+
+
+    </div>
+</div>

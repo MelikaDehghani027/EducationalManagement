@@ -1,0 +1,235 @@
+<div *ngIf="registrationStatusFetched && showProfile">
+    
+            <div class="header-style">
+                    <p style="margin-right:3em ;color:black;font-size: 26px;margin-top:10px;">
+                        پروفایل کاربر
+                    </p>
+                </div>
+    
+   
+
+    <div class="border-style-comp">
+        
+                <div class="style-fa-pencil">
+                        <p>
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                            <button [attr.aria-expanded]="!iscall" aria-controls="collapseExample4" (click)="callInfo(); showEdit()" class="btn btn-changeInfo" >
+                                ویرایش اطلاعات
+                            </button>
+                        </p>
+                </div>
+        
+     
+
+        <div class="style-div-btn  ">
+            <div >
+                <button type="button" class=" btn style-btn s  " (click)="indivInfo()" [attr.aria-expanded]="!isindiv" aria-controls="collapseExample1">
+                    <p> اطلاعات فردی</p>
+                </button>
+                <button type="button" class="btn style-btn icon-uni " (click)="uniInfo()" [attr.aria-expanded]="!isuni" aria-controls="collapseExample2">
+                    <p>
+                        اطلاعات دانشگاهی
+                    </p>
+                    
+                </button>
+                <button type="button" class="btn style-btn icon-bank" (click)="bankInfo()" [attr.aria-expanded]="!isbank" aria-controls="collapseExample3">
+                    <p>
+                        اطلاعات بانکی
+                    </p>
+                </button>
+
+                <button type="button" class="btn style-btn icon-contact" (click)="callInfo()" [attr.aria-expanded]="!iscall" aria-controls="collapseExample4">
+                    <p> اطلاعات تماس</p>
+                </button>
+            </div>
+        </div>
+        <!----------------------------- show card --------------------------------------------------->
+
+        <!--   ----------------------indiv----------------   -->
+        <div class="row">
+
+        <!-- <div class="col-sm-4" > </div>  -->
+
+        <div class="col-sm-8" >
+            <div id="collapseExample1" [ngbCollapse]="isindiv">
+                <div class="card card-style">
+                    <!------------- <app-indiv-info></app-indiv-info> ----------->
+                    <div class="card-body-indiv">
+                        <div class="info-body">
+                            <div>
+                                <div class="text-style">
+                                    <table>
+                                        <tr>
+                                            <td> نام : </td>
+                                            <td>
+                                                {{personPersonalInfo?personPersonalInfo.firstName:''}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> نام خانوادگی : </td>
+                                            <td> {{personPersonalInfo?personPersonalInfo.lastName:''}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td> نام پدر : </td>
+                                            <td>{{personPersonalInfo?personPersonalInfo.fatherName:''}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td> جنسیت : </td>
+                                            <td> {{personPersonalInfo?(personPersonalInfo.gender | genderToPersian):''}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td> تاریخ تولد : </td>
+                                            <td> {{personPersonalInfo?toShamsi(personPersonalInfo.birthDate):''}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td> کد ملی : </td>
+                                            <td>{{personPersonalInfo?personPersonalInfo.nationalCode:''}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td> شماره شناسنامه : </td>
+                                            <td> {{personPersonalInfo?personPersonalInfo.birthCertificateCode:''}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td> سریال شناسنامه : </td>
+                                            <td> {{personPersonalInfo?personPersonalInfo.birthCertificateCode:''}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="style-pic-border">
+                                <!-- /api/em/people/current-user/image" -->
+                                <img src="{{currentUserImageSrc()}}" />
+                                <div class="style-pic-bott justify-content-center">
+                                    <label style=" font-size: 12px; vertical-align: middle;">{{personPersonalInfo?personPersonalInfo.firstName
+                                        + " " + personPersonalInfo.lastName:''}} </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ------------------uni---------------------- -->
+            <div id="collapseExample2" [ngbCollapse]="isuni">
+                <div class="card card-style">
+                    <!-- ---------<app-uni-info></app-uni-info>--------- -->
+                    <div class="card-body-uni">
+                        <div class="info-body">
+                            <div class="text-style">
+                                <table>
+                                    <tr>
+                                        <td> دانشگاه : </td>
+                                        <td>{{studentMembershipInfo?studentMembershipInfo.educationalInstituteName:''}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> مقطع تحصیلی : </td>
+                                        <td> {{studentMembershipInfo? (studentMembershipInfo.degree | degreeToPersian):''}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> رشته : </td>
+                                        <td> {{studentMembershipInfo?studentMembershipInfo.majorName:''}}</td>
+                                    </tr>
+                                    <!-- <tr>
+                                                    <td> نوع سعمیه : </td>
+                                                    <td>//</td>
+                                                </tr><br> -->
+                                    <tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ------------- bank ---------------- -------------------->
+            <div id="collapseExample3" [ngbCollapse]="isbank">
+                <div class="card card-style">
+                    <!---------- <app-bank-info></app-bank-info> ---------------------->
+                    <div class="card-body-bank">
+                        <div class="info-body">
+                            <div class="text-style">
+                                <table>
+                                    <tr>
+                                        <td> شعبه بانک : </td>
+                                        <td>{{cardHolderBankInfo?cardHolderBankInfo.branchCode:''}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ------------------contact---------------------- -->
+            <div id="collapseExample4" [ngbCollapse]="iscall">
+                <div class="card card-style">
+                    <!----- <app-call-info></app-call-info> ----------------->
+                    <div class="card-body-contact">
+                        <div class="info-body">
+                            <div class="text-style">
+                                <form [formGroup]="contactForm">
+                                    <table *ngIf="!profileEdit">
+                                        <tr>
+                                            <td> تلفن ثابت : </td><br>
+                                            <td>{{personContactInfo?personContactInfo.phoneNumber:''}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> تلفن همراه : </td>
+                                            <td>{{personContactInfo?personContactInfo.mobileNumber:''}}</td>
+                                        </tr>
+                                        <td> آدرس : </td>
+                                        <td> {{personContactInfo?personContactInfo.postalAddress:''}}</td>
+                                    </table>
+                                                    <!--  -------- btn --------------- -->
+
+                                    <div class="" *ngIf="profileEdit"  class="border-btn">
+                                        <div class="row">
+                                            <div class="col-sm-6" style="text-align: right">
+                                                <td style="margin-bottom:15px;margin-right:2em"> تلفن ثابت </td><br>
+                                                <td><input required type="text" class="form-control small-input" id="firstName"> </td>
+                                            </div>
+                                            <div class="col-sm-6" style="text-align: right">
+                                                <td style="margin-bottom:15px;margin-right:2em">تلفن همراه </td><br>
+                                                <td> <input required type="text" class="form-control small-input " id="firstName"></td>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6" style="text-align: right">
+                                                <td style="margin-bottom:15px;margin-right:2em"> آدرس</td><br>
+                                                <td><input required type="text" class="form-control long-input" id="firstName"></td>
+                                            </div>
+                                        </div><br>
+
+                                        <div style="margin-top:1em;padding-right:13px ">
+                                            <button *ngIf="profileEdit" (click)="okEdit()" class="btn seve-btn">
+                                                ذخیره اطلاعات
+                                            </button>
+                                            <button *ngIf="profileEdit" (click)="cancel()" class="btn cancel-btn">
+                                                لغو
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div> <!-- end col 8 -->
+    </div> <!--  end row-->
+        <!-- <div class="col-sm-4" ></div> -->
+
+    </div>
+</div>
+
+
+<div *ngIf="registrationStatusFetched && showEvaluatingMessage">
+    درخواست شما در حال حاضر توسط بانک پردازش می شود
+</div> -->
+
+<div *ngIf="registrationStatusFetched && showRetrySelfRegister">
+    Your information is Invalid according to bank.
+    <jhi-student-membership-self-register [embeddedInProfile]="true" (onStudentMembershipSubmission)="onSelfRegisterRetry($event)"></jhi-student-membership-self-register>
+</div>

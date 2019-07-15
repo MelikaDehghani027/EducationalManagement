@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-teacher-membership-heading" jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.home.createOrEditLabel">Create or edit a Teacher Membership</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!teacherMembership.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="teacherMembership.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.personnelCode" for="field_personnelCode">Personnel Code</label>
+                    <input type="text" class="form-control" name="personnelCode" id="field_personnelCode"
+                        [(ngModel)]="teacherMembership.personnelCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.startDate" for="field_startDate">Start Date</label>
+                    <div class="input-group">
+                        <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="teacherMembership.startDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.academicRank" for="field_academicRank">Academic Rank</label>
+                    <select class="form-control" name="academicRank" [(ngModel)]="teacherMembership.academicRank" id="field_academicRank" >
+                        <option value="ASSISTANT_INSTRUCTOR">{{'cardHolderGatewayApp.AcademicRankEnum.ASSISTANT_INSTRUCTOR' | translate}}</option>
+                        <option value="INSTRUCTOR">{{'cardHolderGatewayApp.AcademicRankEnum.INSTRUCTOR' | translate}}</option>
+                        <option value="LECTURER">{{'cardHolderGatewayApp.AcademicRankEnum.LECTURER' | translate}}</option>
+                        <option value="ASSISTANT_PROFESSOR">{{'cardHolderGatewayApp.AcademicRankEnum.ASSISTANT_PROFESSOR' | translate}}</option>
+                        <option value="ASSOCIATE_PROFESSOR">{{'cardHolderGatewayApp.AcademicRankEnum.ASSOCIATE_PROFESSOR' | translate}}</option>
+                        <option value="PROFESSOR">{{'cardHolderGatewayApp.AcademicRankEnum.PROFESSOR' | translate}}</option>
+                        <option value="DISTINGUISHED_PROFESSOR">{{'cardHolderGatewayApp.AcademicRankEnum.DISTINGUISHED_PROFESSOR' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.person" for="field_person">Person</label>
+                    <select class="form-control" id="field_person" name="person" [(ngModel)]="teacherMembership.personId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="personOption.id" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementTeacherMembership.educationalInstitute" for="field_educationalInstitute">Educational Institute</label>
+                    <select class="form-control" id="field_educationalInstitute" name="educationalInstitute" [(ngModel)]="teacherMembership.educationalInstituteId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="educationalInstituteOption.id" *ngFor="let educationalInstituteOption of educationalinstitutes; trackBy: trackEducationalInstituteById">{{educationalInstituteOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

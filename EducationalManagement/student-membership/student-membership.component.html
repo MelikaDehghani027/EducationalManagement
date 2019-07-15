@@ -1,0 +1,117 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.home.title">Student Memberships</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-student-membership" [routerLink]="['/student-membership/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span class="hidden-sm-down"  jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.home.createLabel">
+            Create new Student Membership
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'cardHolderGatewayApp.educationalManagementStudentMembership.home.search' | translate }}">
+                    <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                        <fa-icon [icon]="'search'"></fa-icon>
+                    </button>
+                    <button class="input-group-append btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <fa-icon [icon]="'trash-alt'"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="studentMemberships">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="studentId"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.studentId">Student Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="majorName"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.majorName">Major Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="degree"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.degree">Degree</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="registerationDate"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.registerationDate">Registeration Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="startSemester"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.startSemester">Start Semester</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="academicOrientation"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.academicOrientation">Academic Orientation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="transferStatus"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.transferStatus">Transfer Status</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="academicDepartment"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.academicDepartment">Academic Department</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="admissionType"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.admissionType">Admission Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="admissionQuota"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.admissionQuota">Admission Quota</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="numberOfAllowedSemesters"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.numberOfAllowedSemesters">Number Of Allowed Semesters</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="faculty"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.faculty">Faculty</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="imageId"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.imageId">Image Id</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="completelyRegistered"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.completelyRegistered">Completely Registered</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="active"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.active">Active</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="personId"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.person">Person</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="educationalInstituteId"><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.educationalInstitute">Educational Institute</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let studentMembership of studentMemberships ;trackBy: trackId">
+                <td><a [routerLink]="['/student-membership', studentMembership.id, 'view' ]">{{studentMembership.id}}</a></td>
+                <td>{{studentMembership.studentId}}</td>
+                <td>{{studentMembership.majorName}}</td>
+                <td>{{studentMembership.degree}}</td>
+                <td>{{studentMembership.registerationDate | date:'mediumDate'}}</td>
+                <td>{{studentMembership.startSemester}}</td>
+                <td>{{studentMembership.academicOrientation}}</td>
+                <td jhiTranslate="{{'cardHolderGatewayApp.TransferStatusEnum.' + studentMembership.transferStatus}}">{{studentMembership.transferStatus}}</td>
+                <td>{{studentMembership.academicDepartment}}</td>
+                <td jhiTranslate="{{'cardHolderGatewayApp.AdmissionTypeEnum.' + studentMembership.admissionType}}">{{studentMembership.admissionType}}</td>
+                <td jhiTranslate="{{'cardHolderGatewayApp.AdmissionQuotasEnum.' + studentMembership.admissionQuota}}">{{studentMembership.admissionQuota}}</td>
+                <td>{{studentMembership.numberOfAllowedSemesters}}</td>
+                <td>{{studentMembership.faculty}}</td>
+                <td>{{studentMembership.imageId}}</td>
+                <td>{{studentMembership.completelyRegistered}}</td>
+                <td>{{studentMembership.active}}</td>
+                <td>
+                    <div *ngIf="studentMembership.personId">
+                        <a [routerLink]="['../person', studentMembership.personId , 'view' ]" >{{studentMembership.personId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="studentMembership.educationalInstituteId">
+                        <a [routerLink]="['../educational-institute', studentMembership.educationalInstituteId , 'view' ]" >{{studentMembership.educationalInstituteId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/student-membership', studentMembership.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/student-membership', studentMembership.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'student-membership/'+ studentMembership.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="studentMemberships && studentMemberships.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

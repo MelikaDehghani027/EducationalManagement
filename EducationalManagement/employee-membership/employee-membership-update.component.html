@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-employee-membership-heading" jhiTranslate="cardHolderGatewayApp.educationalManagementEmployeeMembership.home.createOrEditLabel">Create or edit a Employee Membership</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!employeeMembership.id">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="employeeMembership.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementEmployeeMembership.personnelCode" for="field_personnelCode">Personnel Code</label>
+                    <input type="text" class="form-control" name="personnelCode" id="field_personnelCode"
+                        [(ngModel)]="employeeMembership.personnelCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementEmployeeMembership.startDate" for="field_startDate">Start Date</label>
+                    <div class="input-group">
+                        <input id="field_startDate" type="text" class="form-control" name="startDate" ngbDatepicker  #startDateDp="ngbDatepicker" [(ngModel)]="employeeMembership.startDate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementEmployeeMembership.person" for="field_person">Person</label>
+                    <select class="form-control" id="field_person" name="person" [(ngModel)]="employeeMembership.personId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="personOption.id" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="cardHolderGatewayApp.educationalManagementEmployeeMembership.educationalInstitute" for="field_educationalInstitute">Educational Institute</label>
+                    <select class="form-control" id="field_educationalInstitute" name="educationalInstitute" [(ngModel)]="employeeMembership.educationalInstituteId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="educationalInstituteOption.id" *ngFor="let educationalInstituteOption of educationalinstitutes; trackBy: trackEducationalInstituteById">{{educationalInstituteOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

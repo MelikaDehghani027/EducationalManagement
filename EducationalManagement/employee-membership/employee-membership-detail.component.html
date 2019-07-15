@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="employeeMembership">
+            <h2><span jhiTranslate="cardHolderGatewayApp.educationalManagementEmployeeMembership.detail.title">Employee Membership</span> {{employeeMembership.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementEmployeeMembership.personnelCode">Personnel Code</span></dt>
+                <dd>
+                    <span>{{employeeMembership.personnelCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementEmployeeMembership.startDate">Start Date</span></dt>
+                <dd>
+                    <span>{{employeeMembership.startDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementEmployeeMembership.person">Person</span></dt>
+                <dd>
+                    <div *ngIf="employeeMembership.personId">
+                        <a [routerLink]="['/person', employeeMembership.personId, 'view']">{{employeeMembership.personId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementEmployeeMembership.educationalInstitute">Educational Institute</span></dt>
+                <dd>
+                    <div *ngIf="employeeMembership.educationalInstituteId">
+                        <a [routerLink]="['/educational-institute', employeeMembership.educationalInstituteId, 'view']">{{employeeMembership.educationalInstituteId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/employee-membership', employeeMembership.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

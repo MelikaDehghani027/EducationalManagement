@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="studentMembership">
+            <h2><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.detail.title">Student Membership</span> {{studentMembership.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.studentId">Student Id</span></dt>
+                <dd>
+                    <span>{{studentMembership.studentId}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.majorName">Major Name</span></dt>
+                <dd>
+                    <span>{{studentMembership.majorName}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.degree">Degree</span></dt>
+                <dd>
+                    <span>{{studentMembership.degree}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.registerationDate">Registeration Date</span></dt>
+                <dd>
+                    <span>{{studentMembership.registerationDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.startSemester">Start Semester</span></dt>
+                <dd>
+                    <span>{{studentMembership.startSemester}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.academicOrientation">Academic Orientation</span></dt>
+                <dd>
+                    <span>{{studentMembership.academicOrientation}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.transferStatus">Transfer Status</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cardHolderGatewayApp.TransferStatusEnum.' + studentMembership.transferStatus}}">{{studentMembership.transferStatus}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.academicDepartment">Academic Department</span></dt>
+                <dd>
+                    <span>{{studentMembership.academicDepartment}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.admissionType">Admission Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cardHolderGatewayApp.AdmissionTypeEnum.' + studentMembership.admissionType}}">{{studentMembership.admissionType}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.admissionQuota">Admission Quota</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'cardHolderGatewayApp.AdmissionQuotasEnum.' + studentMembership.admissionQuota}}">{{studentMembership.admissionQuota}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.numberOfAllowedSemesters">Number Of Allowed Semesters</span></dt>
+                <dd>
+                    <span>{{studentMembership.numberOfAllowedSemesters}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.faculty">Faculty</span></dt>
+                <dd>
+                    <span>{{studentMembership.faculty}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.imageId">Image Id</span></dt>
+                <dd>
+                    <span>{{studentMembership.imageId}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.completelyRegistered">Completely Registered</span></dt>
+                <dd>
+                    <span>{{studentMembership.completelyRegistered}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.active">Active</span></dt>
+                <dd>
+                    <span>{{studentMembership.active}}</span>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.person">Person</span></dt>
+                <dd>
+                    <div *ngIf="studentMembership.personId">
+                        <a [routerLink]="['/person', studentMembership.personId, 'view']">{{studentMembership.personId}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="cardHolderGatewayApp.educationalManagementStudentMembership.educationalInstitute">Educational Institute</span></dt>
+                <dd>
+                    <div *ngIf="studentMembership.educationalInstituteId">
+                        <a [routerLink]="['/educational-institute', studentMembership.educationalInstituteId, 'view']">{{studentMembership.educationalInstituteId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/student-membership', studentMembership.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
